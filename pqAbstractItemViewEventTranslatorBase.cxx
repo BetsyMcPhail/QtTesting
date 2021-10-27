@@ -244,6 +244,7 @@ void pqAbstractItemViewEventTranslatorBase::onClicked(const QModelIndex& index)
     emit this->recordEvent(abstractItemView, "edit", indexString);
   }
   oldIndex = index;
+  emit this->recordEvent(abstractItemView, "click", indexString);
 }
 
 //-----------------------------------------------------------------------------
