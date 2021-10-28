@@ -111,6 +111,7 @@ SET(MOC_SRCS
   pqAbstractActivateEventPlayer.h
   pqAbstractBooleanEventPlayer.h
   pqAbstractButtonEventTranslator.h
+  pqDateTimeEditEventPlayer.h
   pqAbstractDoubleEventPlayer.h
   pqAbstractIntEventPlayer.h
   pqAbstractItemViewEventPlayer.h
@@ -126,6 +127,7 @@ SET(MOC_SRCS
   pqComboBoxEventTranslator.h
   pqComboBoxEventPlayer.h
   pqCommentEventPlayer.h
+  pqDateTimeEditEventTranslator.h
   pqDoubleSpinBoxEventTranslator.h
   pqEventComment.h
   pqEventDispatcher.h
@@ -199,6 +201,7 @@ SET(QtTesting_SOURCES
   pqAbstractActivateEventPlayer.cxx
   pqAbstractBooleanEventPlayer.cxx
   pqAbstractButtonEventTranslator.cxx
+  pqDateTimeEditEventPlayer.cxx
   pqAbstractDoubleEventPlayer.cxx
   pqAbstractIntEventPlayer.cxx
   pqAbstractItemViewEventPlayer.cxx
@@ -214,6 +217,7 @@ SET(QtTesting_SOURCES
   pqComboBoxEventTranslator.cxx
   pqComboBoxEventPlayer.cxx
   pqCommentEventPlayer.cxx
+  pqDateTimeEditEventTranslator.cxx
   pqDoubleSpinBoxEventTranslator.cxx
   pqEventComment.cxx
   pqEventDispatcher.cxx
@@ -252,6 +256,7 @@ SET(QtTesting_DEVEL_HEADERS
   pqAbstractActivateEventPlayer.h
   pqAbstractBooleanEventPlayer.h
   pqAbstractButtonEventTranslator.h
+  pqDateTimeEditEventPlayer.h
   pqAbstractDoubleEventPlayer.h
   pqAbstractIntEventPlayer.h
   pqAbstractItemViewEventPlayer.h
@@ -267,6 +272,7 @@ SET(QtTesting_DEVEL_HEADERS
   pqComboBoxEventTranslator.h
   pqComboBoxEventPlayer.h
   pqCommentEventPlayer.h
+  pqDateTimeEditEventTranslator.h
   pqDoubleSpinBoxEventTranslator.h
   pqEventComment.h
   pqEventDispatcher.h

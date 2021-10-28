@@ -1,20 +1,20 @@
 /*=========================================================================
 
-   Program: ParaView
-   Module:    pqDoubleSpinBoxEventTranslator.h
+Program: ParaView
+Module:    pqDoubleSpinBoxEventTranslator.h
 
-   Copyright (c) 2005-2008 Sandia Corporation, Kitware Inc.
-   All rights reserved.
+Copyright (c) 2005-2008 Sandia Corporation, Kitware Inc.
+All rights reserved.
 
-   ParaView is a free software; you can redistribute it and/or modify it
-   under the terms of the ParaView license version 1.2.
+ParaView is a free software; you can redistribute it and/or modify it
+under the terms of the ParaView license version 1.2.
 
-   See License_v1.2.txt for the full ParaView license.
-   A copy of this license can be obtained by contacting
-   Kitware Inc.
-   28 Corporate Drive
-   Clifton Park, NY 12065
-   USA
+See License_v1.2.txt for the full ParaView license.
+A copy of this license can be obtained by contacting
+Kitware Inc.
+28 Corporate Drive
+Clifton Park, NY 12065
+USA
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -30,8 +30,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 =========================================================================*/
 
-#ifndef _pqDoubleSpinBoxEventTranslator_h
-#define _pqDoubleSpinBoxEventTranslator_h
+#ifndef _pqDateTimeEditEventTranslator_h
+#define _pqDateTimeEditEventTranslator_h
 
 #include "pqWidgetEventTranslator.h"
 
@@ -41,26 +41,26 @@ Translates low-level Qt events into high-level ParaView events that can be recor
 \sa pqEventTranslator
 */
 
-class QTTESTING_EXPORT pqDoubleSpinBoxEventTranslator : public pqWidgetEventTranslator
+class QTTESTING_EXPORT pqDateTimeEditEventTranslator : public pqWidgetEventTranslator
 {
   Q_OBJECT
-  typedef pqWidgetEventTranslator Superclass;
+    typedef pqWidgetEventTranslator Superclass;
 
 public:
-  pqDoubleSpinBoxEventTranslator(QObject* p = 0);
+  pqDateTimeEditEventTranslator(QObject* p = 0);
 
   using Superclass::translateEvent;
   bool translateEvent(QObject* Object, QEvent* Event, bool& Error) override;
 
 private:
-  pqDoubleSpinBoxEventTranslator(const pqDoubleSpinBoxEventTranslator&);
-  pqDoubleSpinBoxEventTranslator& operator=(const pqDoubleSpinBoxEventTranslator&);
+  pqDateTimeEditEventTranslator(const pqDateTimeEditEventTranslator&);
+  pqDateTimeEditEventTranslator& operator=(const pqDateTimeEditEventTranslator&);
 
   QObject* CurrentObject;
 
 private slots:
   void onDestroyed(QObject*);
-  void onValueChanged(double number);
+  void onDateChanged(const QDate &date);
 };
 
-#endif // !_pqDoubleSpinBoxEventTranslator_h
+#endif // !_pqDateTimeEditEventTranslator_h

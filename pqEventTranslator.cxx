@@ -39,6 +39,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "pqBasicWidgetEventTranslator.h"
 #include "pqCheckEventOverlay.h"
 #include "pqComboBoxEventTranslator.h"
+#include "pqDateTimeEditEventTranslator.h"
 #include "pqDoubleSpinBoxEventTranslator.h"
 #include "pqEventComment.h"
 #include "pqEventTypes.h"
@@ -171,6 +172,7 @@ void pqEventTranslator::addDefaultWidgetEventTranslators(pqTestUtility* util)
   addWidgetEventTranslator(new pqAbstractItemViewEventTranslator());
   addWidgetEventTranslator(new pqAbstractSliderEventTranslator());
   addWidgetEventTranslator(new pqComboBoxEventTranslator());
+  addWidgetEventTranslator(new pqDateTimeEditEventTranslator());
   addWidgetEventTranslator(new pqDoubleSpinBoxEventTranslator());
   addWidgetEventTranslator(new pqLineEditEventTranslator());
   addWidgetEventTranslator(new pqMenuEventTranslator());

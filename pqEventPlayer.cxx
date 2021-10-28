@@ -35,6 +35,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "pq3DViewEventPlayer.h"
 #include "pqAbstractActivateEventPlayer.h"
 #include "pqAbstractBooleanEventPlayer.h"
+#include "pqDateTimeEditEventPlayer.h"
 #include "pqAbstractDoubleEventPlayer.h"
 #include "pqAbstractIntEventPlayer.h"
 #include "pqAbstractItemViewEventPlayer.h"
@@ -72,6 +73,7 @@ void pqEventPlayer::addDefaultWidgetEventPlayers(pqTestUtility* util)
   addWidgetEventPlayer(new pqBasicWidgetEventPlayer());
   addWidgetEventPlayer(new pqAbstractActivateEventPlayer());
   addWidgetEventPlayer(new pqAbstractBooleanEventPlayer());
+  addWidgetEventPlayer(new pqDateTimeEditEventPlayer());
   addWidgetEventPlayer(new pqAbstractDoubleEventPlayer());
   addWidgetEventPlayer(new pqAbstractIntEventPlayer());
   addWidgetEventPlayer(new pqAbstractItemViewEventPlayer());

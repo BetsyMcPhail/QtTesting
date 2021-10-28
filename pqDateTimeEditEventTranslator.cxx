@@ -1,20 +1,20 @@
 /*=========================================================================
 
-   Program: ParaView
-   Module:    pqDoubleSpinBoxEventTranslator.cxx
+Program: ParaView
+Module:    pqDoubleSpinBoxEventTranslator.cxx
 
-   Copyright (c) 2005-2008 Sandia Corporation, Kitware Inc.
-   All rights reserved.
+Copyright (c) 2005-2008 Sandia Corporation, Kitware Inc.
+All rights reserved.
 
-   ParaView is a free software; you can redistribute it and/or modify it
-   under the terms of the ParaView license version 1.2.
+ParaView is a free software; you can redistribute it and/or modify it
+under the terms of the ParaView license version 1.2.
 
-   See License_v1.2.txt for the full ParaView license.
-   A copy of this license can be obtained by contacting
-   Kitware Inc.
-   28 Corporate Drive
-   Clifton Park, NY 12065
-   USA
+See License_v1.2.txt for the full ParaView license.
+A copy of this license can be obtained by contacting
+Kitware Inc.
+28 Corporate Drive
+Clifton Park, NY 12065
+USA
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -30,28 +30,28 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 =========================================================================*/
 
-#include "pqDoubleSpinBoxEventTranslator.h"
+#include "pqDateTimeEditEventTranslator.h"
 
-#include <QDoubleSpinBox>
+#include <QDateTimeEdit>
 #include <QKeyEvent>
 #include <QMouseEvent>
 #include <QStyle>
 #include <QStyleOptionSpinBox>
 
 // ----------------------------------------------------------------------------
-pqDoubleSpinBoxEventTranslator::pqDoubleSpinBoxEventTranslator(QObject* p)
+pqDateTimeEditEventTranslator::pqDateTimeEditEventTranslator(QObject* p)
   : pqWidgetEventTranslator(p)
   , CurrentObject(0)
 {
 }
 
 // ----------------------------------------------------------------------------
-bool pqDoubleSpinBoxEventTranslator::translateEvent(QObject* Object, QEvent* Event, bool& Error)
+bool pqDateTimeEditEventTranslator::translateEvent(QObject* Object, QEvent* Event, bool& Error)
 {
-  QDoubleSpinBox* const object = qobject_cast<QDoubleSpinBox*>(Object);
+  QDateTimeEdit * const object = qobject_cast<QDateTimeEdit *>(Object);
 
   // consume line edit events if part of spin box
-  if (!object && qobject_cast<QDoubleSpinBox*>(Object->parent()))
+  if (!object && qobject_cast<QDateTimeEdit *>(Object->parent()))
   {
     return true;
   }
@@ -69,7 +69,7 @@ bool pqDoubleSpinBoxEventTranslator::translateEvent(QObject* Object, QEvent* Eve
       }
 
       this->CurrentObject = Object;
-      connect(object, SIGNAL(valueChanged(double)), this, SLOT(onValueChanged(double)));
+      connect(object, SIGNAL(dateChanged(QDate)), this, SLOT(onDateChanged(QDate)));
       connect(object, SIGNAL(destroyed(QObject*)), this, SLOT(onDestroyed(QObject*)));
     }
     return true;
@@ -81,7 +81,7 @@ bool pqDoubleSpinBoxEventTranslator::translateEvent(QObject* Object, QEvent* Eve
     QString keyText = ke->text();
     if (keyText.length() && keyText.at(0).isPrint())
     {
-      emit recordEvent(object, "set_double", QString("%1").arg(object->value()));
+      //emit recordEvent(this->CurrentObject, "set_date", QString("%1").arg(object->date().toString("ddMMyyyy")));
     }
     else
     {
@@ -93,13 +93,13 @@ bool pqDoubleSpinBoxEventTranslator::translateEvent(QObject* Object, QEvent* Eve
 }
 
 // ----------------------------------------------------------------------------
-void pqDoubleSpinBoxEventTranslator::onDestroyed(QObject* /*Object*/)
+void pqDateTimeEditEventTranslator::onDestroyed(QObject* /*Object*/)
 {
   this->CurrentObject = 0;
 }
 
 // ----------------------------------------------------------------------------
-void pqDoubleSpinBoxEventTranslator::onValueChanged(double number)
+void pqDateTimeEditEventTranslator::onDateChanged(const QDate &date)
 {
-  emit recordEvent(this->CurrentObject, "set_double", QString("%1").arg(number));
+  emit recordEvent(this->CurrentObject, "set_date", QString("%1").arg(date.toString("ddMMyyyy")));
 }
